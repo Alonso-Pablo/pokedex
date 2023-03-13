@@ -5,7 +5,8 @@ import { PokemonService } from '../../../../core/services/pokemon.service';
 
 @Component({
   templateUrl: './pokemon.component.html',
-  styleUrls: ['./pokemon.component.css']
+  styleUrls: ['./pokemon.component.css'],
+  providers: [ PokemonService ],
 })
 export class PokemonComponent implements OnInit {
   pokemonId!: string;

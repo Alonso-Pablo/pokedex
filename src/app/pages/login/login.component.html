@@ -1,15 +1,15 @@
-<div class="flex flex-1 justify-center py-2">
+<div class="flex justify-center flex-1 py-2">
   <div class="flex flex-col items-center gap-4">
     <h2>Log in</h2>
-    <p>If you don't have an account: <a routerLink="/signup" class="bg-gray-400 py-1 px-4 rounded-lg">Signup</a>
-    <form [formGroup]="loginForm" class="w-full flex flex-col gap-12">
+    <p>If you don't have an account: <a routerLink="/signup" class="px-4 py-1 bg-gray-400 rounded-lg">Signup</a>
+    <form [formGroup]="loginForm" class="flex flex-col w-full gap-12">
       <label class="flex flex-col">
         Nickname:
         <input
           formControlName="nickname"
           name="nickname"
           placeholder="nickname"
-          class="bg-gray-50 px-4 py-2"
+          class="px-4 py-2 bg-gray-50"
           type="text"
         />
         <div *ngIf="formFieldsErrors.nickname.required">
@@ -23,7 +23,7 @@
           name="password"
           placeholder="Password"
           type="password"
-          class="bg-gray-50 px-4 py-2"
+          class="px-4 py-2 bg-gray-50"
         />
         <div *ngIf="formFieldsErrors.password.required">
           <span role="alert" class="text-red-600">{{ formFieldsErrors.password.required }}</span>
@@ -31,14 +31,14 @@
       </label>
 
       <div *ngIf="backendErrorResponse">
-        <span role="alert" class="text-red-600">{{ backendErrorResponse }}</span>
+        <span role="alert" class="text-red-600">Error: {{ backendErrorResponse }}</span>
       </div>
 
       <button
         (click)="onLogin()"
         type="submit"
         [disabled]="loginForm.invalid"
-        class="bg-gray-400 rounded-lg p-2 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor-pointer"
+        class="p-2 bg-gray-400 rounded-lg cursor-pointer disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
       >
         Login
       </button>
