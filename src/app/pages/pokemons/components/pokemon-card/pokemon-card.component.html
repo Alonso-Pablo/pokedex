@@ -1,0 +1,15 @@
+<ng-container *ngIf="pokemon.id">
+  <a [routerLink]="pokemonDetails">
+    <div class="
+      flex flex-col items-center bg-gray-400 rounded-lg
+      py-2 px-2 flex-1 border-b-4  border-gray-500 gap-2
+    ">
+      <h2 class="font-medium bg-gray-200 border-t-2 border-gray-500 px-2 rounded-lg">{{ pokemon.name | uppercase }}</h2>
+      <div class="bg-gray-100 border-t-4 border-gray-500 rounded-lg">
+        <ng-container  *ngFor="let sprite of pokemon.sprites">
+          <img [src]="sprite" [alt]="pokemon.name" class="w-36" />
+        </ng-container>
+      </div>
+    </div>
+  </a>
+</ng-container>

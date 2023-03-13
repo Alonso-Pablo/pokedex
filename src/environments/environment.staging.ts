@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   backendUrl: 'https://pokedex-backend-production.up.railway.app/api/',
 };

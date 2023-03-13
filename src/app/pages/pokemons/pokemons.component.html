@@ -1,0 +1,46 @@
+<div class="flex flex-col h-full bg-gray-50 gap-4">
+  <h2 class="font-semibold text-3xl text-center">Pokemon List</h2>
+  <div class="flex pb-8 justify-center gap-x-6">
+    <button
+      [disabled]="isFirstPage"
+      (click)="goPreviousPage(20)"
+      class="
+        w-28 bg-gray-400 py-2 px-6 rounded-lg border-b-4 border-gray-500
+        disabled:bg-gray-200 disabled:border-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed "
+    >
+      Previous
+    </button>
+    <button 
+      [disabled]="isLastPage"
+      (click)="goNextPage(20)"
+      class="w-28 bg-gray-400 py-2 px-6 rounded-lg border-b-4 border-gray-500
+      disabled:bg-gray-200 disabled:border-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed"
+    >
+      Next
+    </button>
+  </div>
+  <div class="flex justify-center mx-auto flex-wrap gap-3">
+    <ng-container *ngFor="let pokemon of pokemons">
+      <app-pokemon-card [pokemon]="pokemon" ></app-pokemon-card>
+    </ng-container>
+  </div>
+  <div class="flex pb-8 justify-center gap-x-6">
+    <button
+      [disabled]="isFirstPage"
+      (click)="goPreviousPage(20)"
+      class="
+        w-28 bg-gray-400 py-2 px-6 rounded-lg border-b-4 border-gray-500
+        disabled:bg-gray-200 disabled:border-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed"
+    >
+      Previous
+    </button>
+    <button 
+      [disabled]="isLastPage"
+      (click)="goNextPage(20)"
+      class="w-28 bg-gray-400 py-2 px-6 rounded-lg border-b-4 border-gray-500
+      disabled:bg-gray-200 disabled:border-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed"
+    >
+      Next
+    </button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<ng-container *ngIf="pokemon.id">
+  <div class="flex m-8">
+    <div class="
+      flex justify-center items-center bg-gray-400 rounded-lg
+      py-8 px-10 flex-1 border-b-4 border-gray-500 gap-4
+    ">
+      <div class="flex flex-col gap-y-4">
+        <h2 class="text-3xl font-medium bg-gray-100 border-t-4 border-gray-500 px-2 rounded-lg text-center">{{ pokemon.name | uppercase }}</h2>
+        <div class="bg-gray-100 border-t-4 border-gray-500 rounded-lg">
+          <ng-container *ngFor="let sprite of pokemon.sprites">
+            <img [src]="sprite" [alt]="pokemon.name" class="w-56" />
+          </ng-container>
+        </div>
+      </div>
+      <div class="flex flex-col gap-y-6">
+        <p class="text-3xl font-medium bg-gray-100 border-t-4 border-gray-500 px-10 rounded-lg text-center">Height: {{ pokemon.height }}</p>
+        <p class="text-3xl font-medium bg-gray-100 border-t-4 border-gray-500 px-10 rounded-lg text-center">Weight: {{ pokemon.weight }}</p>
+        <div class="flex flex-col mt-5 gap-y-4 bg-gray-100 border-t-4 border-gray-500 px-10 rounded-lg">
+          <p class="text-3xl font-medium text-center">POKEMON TYPES:</p>
+          <ng-container *ngFor="let type of pokemon.types">
+            <span class="text-3xl font-medium text-center">{{ type.type.name | uppercase }}</span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

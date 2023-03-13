@@ -1,0 +1,82 @@
+<div class="flex flex-1 justify-center py-2">
+  <div class="flex flex-col items-center gap-4">
+    <h2>Sign up</h2>
+    <p>If you already have an account: <a routerLink="/login" class="bg-gray-400 py-1 px-4 rounded-lg">Log in</a>
+    <form [formGroup]="signUpForm" class="w-full flex flex-col gap-12">
+      <label class="flex flex-col">
+        Name:
+        <input
+          formControlName="name"
+          name="name"
+          placeholder="name"
+          class="bg-slate-50 px-4 py-2"
+          type="text"
+        />
+        <div *ngIf="formFieldsErrors.name.required">
+          <span role="alert" class="text-red-600">{{ formFieldsErrors.name.required }}</span>
+        </div>
+      </label>
+      <label class="flex flex-col">
+        Nickname:
+        <input
+          formControlName="nickname"
+          name="nickname"
+          placeholder="nickname"
+          class="bg-slate-50 px-4 py-2"
+          type="text"
+        />
+        <div *ngIf="formFieldsErrors.nickname.required">
+          <span role="alert" class="text-red-600">{{ formFieldsErrors.nickname.required }}</span>
+        </div>
+        <div *ngIf="formFieldsErrors.nickname.other">
+          <span role="alert" class="text-red-600">{{ formFieldsErrors.nickname.other }}</span>
+        </div>
+      </label>
+      <label class="flex flex-col">
+        Password:
+        <input
+          formControlName="password"
+          name="password"
+          placeholder="Password"
+          type="password"
+          class="bg-gray-50 px-4 py-2"
+        />
+        <div *ngIf="formFieldsErrors.password.required">
+          <span role="alert" class="text-red-600">{{ formFieldsErrors.password.required }}</span>
+        </div>
+      </label>
+      <label class="flex flex-col">
+        Choose a Team:
+        <select
+          formControlName="team"
+          name="team"
+          class="bg-gray-50 px-4 py-2"
+        >
+          <option value="" disabled selected>--Please choose a team--</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="yellow">Yelow</option>
+        </select>
+        <div *ngIf="formFieldsErrors.team.required">
+          <span role="alert" class="text-red-600">{{ formFieldsErrors.team.required }}</span>
+        </div>
+        <div *ngIf="formFieldsErrors.team.pattern">
+          <span role="alert" class="text-red-600">{{ formFieldsErrors.team.pattern }}</span>
+        </div>
+      </label>
+
+      <div *ngIf="backendErrorResponse">
+        <span role="alert" class="text-red-600">{{ backendErrorResponse }}</span>
+      </div>
+
+      <button
+        (click)="onSignUp()"
+        type="submit"
+        [disabled]="signUpForm.invalid"
+        class="bg-gray-400 rounded-lg p-2 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed cursor-pointer"
+      >
+        Sign up
+      </button>
+    </form>
+  </div>
+</div>
