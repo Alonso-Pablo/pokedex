@@ -25,14 +25,12 @@ export class PokemonService {
     const offset = paginationOptions?.offset || 0;
     return this.http.get<PokemonPaginatedResponse>(
       `${this.backend_url}/pokemons?limit=${limit}&offset=${offset}`,
-      { headers: { 'Access-Control-Allow-Origin': '*' } }
     )
   }
 
   findOne(id: string): Observable<Pokemon> {
     return this.http.get<Pokemon>(
       `${this.backend_url}/pokemons/${id}`,
-      { headers: { 'Access-Control-Allow-Origin': '*' } }
     )
   }
 }
