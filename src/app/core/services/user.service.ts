@@ -15,6 +15,9 @@ export class UserService {
   ) {}
 
   findMe(): Observable<User> {
-    return this.http.get<User>(`${this.backend_url}/users/me`)
+    return this.http.get<User>(
+      `${this.backend_url}/users/me`,
+      { headers: { 'Access-Control-Allow-Origin': '*' }}
+    )
   }
 }

@@ -26,7 +26,7 @@ export class AuthService {
     return this.http.post(`${environment.backendUrl}/auth/login`, {
       nickname,
       password,
-    },{ responseType: 'text' })
+    },{ responseType: 'text', headers: { 'Access-Control-Allow-Origin': '*' }  })
   }
 
   signUp({ name, nickname, password, team }: SignUpUserCredentials): Observable<string> {
@@ -35,7 +35,7 @@ export class AuthService {
       nickname,
       password,
       team,
-    },{ responseType: 'text' })
+    },{ responseType: 'text', headers: { 'Access-Control-Allow-Origin': '*' } })
   }
 
   setSession(authResult: string) {
