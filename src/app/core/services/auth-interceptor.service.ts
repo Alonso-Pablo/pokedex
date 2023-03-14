@@ -10,6 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const authToken = this.authService.getAuthTokenFromLocalStorage()
     if (!authToken) return next.handle(req)
 
+    this.authService.setSession(authToken)
     const cloned = req.clone({
       headers: req.headers.set("Authorization",
       "Bearer " + authToken)

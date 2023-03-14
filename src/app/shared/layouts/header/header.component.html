@@ -1,25 +1,31 @@
-<div class="flex justify-end items-center py-4 px-8 bg-gray-100 gap-x-5">
-  <a routerLink="/pokemons" class="bg-gray-300 py-1 px-4 rounded-lg border-b-4 border-gray-400">Home</a>
-  <div class="flex flex-1 justify-end items-center gap-x-5">
+<div class="flex items-center justify-end px-8 py-4 bg-gray-100 gap-x-5">
+  <a routerLink="/pokemons" class="px-4 py-1 bg-gray-300 border-b-4 border-gray-400 rounded-lg">Home</a>
+  <div class="flex items-center justify-end flex-1 gap-x-5">
 
     <ng-container *ngIf="isAuthenticated; else noAuth">
       <ng-container *ngIf="user.name; else withoutUser">
         <p class="font-medium">Welcome {{user.name}}!</p>
         <button
           (click)="handleLogOut()"
-          class="bg-gray-300 py-1 px-4 rounded-lg border-b-4 border-gray-400"
+          class="px-4 py-1 bg-gray-300 border-b-4 border-gray-400 rounded-lg"
         >
           Log out
         </button>
       </ng-container>
       <ng-template #withoutUser>
-        <p>Welcome Pokemon Trainer!</p>
+        <p class="font-medium">Welcome Pokemon Trainer!</p>
+        <button
+          (click)="handleLogOut()"
+          class="px-4 py-1 bg-gray-300 border-b-4 border-gray-400 rounded-lg"
+        >
+          Log out
+        </button>
       </ng-template>
     </ng-container>
     <ng-template #noAuth>
       <div class="flex gap-2">
-        <a routerLink="/login" class="bg-gray-300 py-1 px-4 rounded-lg border-b-4 border-gray-500">Log in</a>
-        <a routerLink="/signup" class="bg-gray-400 py-1 px-4 rounded-lg border-b-4 border-gray-500">Signup</a>
+        <a routerLink="/login" class="px-4 py-1 bg-gray-300 border-b-4 border-gray-500 rounded-lg">Log in</a>
+        <a routerLink="/signup" class="px-4 py-1 bg-gray-400 border-b-4 border-gray-500 rounded-lg">Signup</a>
       </div>
     </ng-template>
   </div>

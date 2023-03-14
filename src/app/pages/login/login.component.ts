@@ -1,18 +1,20 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { LoginUserCredentials } from '../../core/models/login-user-credentials.model';
 import { AuthService } from '../../core/services/auth.service';
+import { LoginService } from './services/login.service';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [ AuthService ],
+  providers: [ AuthService, LoginService ],
 })
 export class LoginComponent implements OnInit {
-  public loginForm: FormGroup = new FormGroup({})
   public backendErrorResponse: string = ''
+
+  public loginForm: FormGroup = new FormGroup({})
   public formFieldsErrors = {
     nickname: { required: '' },
     password: { required: '' },
@@ -21,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private loginService: LoginService,
   ) {}
 
   ngOnInit(): void {
@@ -38,9 +41,9 @@ export class LoginComponent implements OnInit {
     if (!this.isFormFieldsCompleted()) return;
 
     const loginUserCredentials: LoginUserCredentials = this.getValuesFromFields();
-    this.authService.login(loginUserCredentials).subscribe(
+    this.loginService.login(loginUserCredentials).subscribe(
       (authToken) => this.handleSuccessLogin(authToken),
-      this.handleBackendError
+      (e) => this.handleBackendError(e)
     )
   }
 

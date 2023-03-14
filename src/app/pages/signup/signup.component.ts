@@ -4,11 +4,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignUpUserCredentials } from '../../core/models/sign-up-user-credentials.model';
 import { AuthService } from '../../core/services/auth.service';
+import { SignUpService } from './services/signup.service';
 
 @Component({
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  providers: [ AuthService ],
+  providers: [ AuthService, SignUpService ],
 })
 export class SignupComponent implements OnInit {
   public signUpForm: FormGroup = new FormGroup({})
@@ -23,6 +24,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private signUpService: SignUpService,
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class SignupComponent implements OnInit {
     if (!this.isFormFieldsCompleted()) return;
 
     const signUpCredentials: SignUpUserCredentials = this.getValuesFromFields();
-    this.authService.signUp(signUpCredentials).subscribe(
+    this.signUpService.signUp(signUpCredentials).subscribe(
       (authToken) => this.handleSuccessSignUp(authToken),
       (e) => this.handleBackendError(e)
     )

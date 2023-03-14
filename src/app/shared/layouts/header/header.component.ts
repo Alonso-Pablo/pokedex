@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
 import { User } from '../../../core/models/user.model';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserService } from '../../../core/services/user.service';
@@ -27,11 +26,15 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.findMe().pipe(take(1)).subscribe((user: User) => this.user = user)
+    this.authService.isAuthenticated.subscribe(isUserAuth => {
+      this.isAuthenticated = isUserAuth;
+
+    })
+    this.userService.findMe().subscribe((user: User) => this.user = user)
   }
 
   handleLogOut() {
-    this.authService.logout()
+    this.authService.endSession()
     this.isAuthenticated = false
     this.router.navigate(['/login'])
   }

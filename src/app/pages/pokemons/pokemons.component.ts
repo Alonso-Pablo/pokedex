@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs';
 import { PokemonPaginatedResponse } from '../../core/models/pokemon-paginated-response.model';
 import { Pokemon } from '../../core/models/pokemon.model';
 import { PokemonService } from '../../core/services/pokemon.service';
@@ -24,13 +23,13 @@ export class PokemonsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.pipe(take(1)).subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this.limit = Number(params['limit']) || 0;
       this.offset = Number(params['offset']) || 0;
     })
 
     this.pokemonService
-      .find({ limit: this.limit, offset: this.offset}).pipe(take(1))
+      .find({ limit: this.limit, offset: this.offset})
       .subscribe(({ pokemons, previous, next }: PokemonPaginatedResponse) => {
         this.pokemons = pokemons;
         this.handleFirstPage(previous);
