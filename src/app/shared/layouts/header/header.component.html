@@ -13,7 +13,13 @@
         </button>
       </ng-container>
       <ng-template #withoutUser>
-        <p>Welcome Pokemon Trainer!</p>
+        <p class="font-medium">Welcome Pokemon Trainer!</p>
+        <button
+          (click)="handleLogOut()"
+          class="px-4 py-1 bg-gray-300 border-b-4 border-gray-400 rounded-lg"
+        >
+          Log out
+        </button>
       </ng-template>
     </ng-container>
     <ng-template #noAuth>
